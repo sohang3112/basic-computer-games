@@ -7,11 +7,11 @@ require random.fs
    else dup 12 = if ." K" 
    else 1+ . then then then then ;
 
-( TODO: Don't really understand this code - understand it! )
+\ TODO: Don't really understand this code - understand it!
 : time ( -- t ; Get system time: https://www.rosettacode.org/wiki/System_time#Forth )
     cputime d+ 1000 um/mod nip ;
 
-( time seed ! -- Init seed with timestamp NOT WORKING! )
+\ time seed !       \ Init seed with timestamp NOT WORKING!
 1234 seed !
 
 cr ." ACEY-DUCEY IS PLAYED IN THE FOLLOWING MANNER"
@@ -23,8 +23,7 @@ cr ." IF YOU DO NOT WANT TO BET, INPUT '0'"
 cr ." YOU NOW HAVE 100 DOLLARS."
 cr 
 cr ." HERE ARE YOUR NEXT TWO CARDS:"
-( TODO: second card value should be greater than first )
-cr 11 random dup print-card-value
-cr 11 over - random over + dup print-card-value
+cr 11 random print-card-value                  \ lower card of range
+cr 11 over - random over + print-card-value    \ upper card of range
 cr
 cr ." WHAT IS YOUR BET?"

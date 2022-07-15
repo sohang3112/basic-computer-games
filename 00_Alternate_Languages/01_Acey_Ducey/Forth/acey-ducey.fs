@@ -1,8 +1,13 @@
 require random.fs
 
-create card-values char A , char 2 , char 3 , char 4 , char 5 , char 6 , char 7 , char 8 , char 9 , char 10 , char J , char Q , char K ,
-: print-card-value ( n -- ; ) cells card-values + @ emit ;
+: print-card-value ( n -- n ; prints card value corresponding to index )
+   dup 0 = if ." A"
+   else dup 10 = if ." J"
+   else dup 11 = if ." Q" 
+   else dup 12 = if ." K" 
+   else 1+ . then then then then ;
 
+( TODO: Don't really understand this code - understand it! )
 : time ( -- t ; Get system time: https://www.rosettacode.org/wiki/System_time#Forth )
     cputime d+ 1000 um/mod nip ;
 
@@ -18,7 +23,8 @@ cr ." IF YOU DO NOT WANT TO BET, INPUT '0'"
 cr ." YOU NOW HAVE 100 DOLLARS."
 cr 
 cr ." HERE ARE YOUR NEXT TWO CARDS:"
-cr 13 random dup print-card-value
-cr 13 random dup print-card-value
+( TODO: second card value should be greater than first )
+cr 11 random dup print-card-value
+cr 11 over - random over + dup print-card-value
 cr
 cr ." WHAT IS YOUR BET?"

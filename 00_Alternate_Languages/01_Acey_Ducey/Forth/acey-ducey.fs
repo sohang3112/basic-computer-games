@@ -1,5 +1,8 @@
 require random.fs
 
+create card-values char A , char 2 , char 3 , char 4 , char 5 , char 6 , char 7 , char 8 , char 9 , char 10 , char J , char Q , char K ,
+: print-card-value ( n -- ; ) cells card-values + @ emit ;
+
 : time ( -- t ; Get system time: https://www.rosettacode.org/wiki/System_time#Forth )
     cputime d+ 1000 um/mod nip ;
 
@@ -15,8 +18,7 @@ cr ." IF YOU DO NOT WANT TO BET, INPUT '0'"
 cr ." YOU NOW HAVE 100 DOLLARS."
 cr 
 cr ." HERE ARE YOUR NEXT TWO CARDS:"
-( TODO: Show face cards A,J,Q,K properly )
-cr 13 random 1+ .
-cr 13 random 1+ .
+cr 13 random dup print-card-value
+cr 13 random dup print-card-value
 cr
 cr ." WHAT IS YOUR BET?"
